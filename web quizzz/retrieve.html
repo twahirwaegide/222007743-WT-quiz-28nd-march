@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retrieved Information</title>
+</head>
+<body>
+
+<h2>Retrieved Information</h2>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Password</th>
+        </tr>
+    </thead>
+    <tbody id="userInfo">
+        <!-- Table rows will be dynamically added here -->
+    </tbody>
+</table>
+
+<script>
+    // Function to parse query parameters from URL
+    function getQueryVariable(variable) {
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        for (var i = 0; i < vars.length; i++) {
+            var pair = vars[i].split("=");
+            if (pair[0] === variable) {
+                return decodeURIComponent(pair[1]);
+            }
+        }
+        return null;
+    }
+
+    // Retrieve username and password from query parameters
+    var username = getQueryVariable("username");
+    var password = getQueryVariable("password");
+
+    // Create table row and cells to display retrieved information
+    var tableRow = document.createElement("tr");
+    var usernameCell = document.createElement("td");
+    var passwordCell = document.createElement("td");
+    
+    // Set text content for username and password cells
+    usernameCell.textContent = username;
+    passwordCell.textContent = password;
+
+    // Append cells to the row
+    tableRow.appendChild(usernameCell);
+    tableRow.appendChild(passwordCell);
+
+    // Append the row to the table body
+    document.getElementById("userInfo").appendChild(tableRow);
+</script>
+
+</body>
+</html>
